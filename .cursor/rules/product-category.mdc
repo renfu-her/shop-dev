@@ -1,0 +1,26 @@
+---
+description: product category filamet v3 create, modify
+globs: 
+alwaysApply: false
+---
+### 分類 Product Category
+
+類別名稱：String
+父類別：0 代表最上層
+啓用：Integer
+
+
+#### 分類的模型範例
+```
+資訊
+ - 電腦
+   - 筆電
+   - 桌機
+
+品牌旗艦
+- KINYO
+  - KINYO
+- 台塑生醫
+   -  保健
+```
+

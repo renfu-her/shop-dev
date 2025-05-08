@@ -1,0 +1,18 @@
+---
+description: product supplier filament v3 create, modify
+globs: 
+alwaysApply: false
+---
+## 供應商資料表 Product Supplier
+
+供應商名稱
+供應商代碼
+Logo
+聯絡人
+電話
+手機
+email
+line id
+
+
+

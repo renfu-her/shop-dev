@@ -1,0 +1,49 @@
+---
+description: product filament v3 create, modify refreence
+globs: 
+alwaysApply: false
+---
+## 使用環境
+
+- Laravel 12
+- Filament
+	- 使用的 plugins
+		- intervention/image
+		- coolsam/flatpickr
+		- malzariey/filament-lexical-editor
+
+## 商品資料庫 Product
+
+供應商代碼：id
+商品名稱：String
+商品代碼：String
+Logo：String
+說明：Text
+商品介紹：Text
+規格說明：Text
+運送方式：Text
+歸屬類別：Array id
+ - 對應商品類型 Product Category
+啓用：Integer
+
+如果全部規格爲 0，直接下架(啓用 =0)
+
+## 商品圖片資料庫 Product Image
+
+商品代碼：id
+圖片：String
+順序：Integer
+啓用：Integer
+
+## 商品規格資料庫 Product Item
+
+商品代碼：id
+商品編號：String
+規格名稱：String
+剩餘數量：Number
+
+## 預設資料 Product Default
+
+運送方式：Text
+
+

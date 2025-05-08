@@ -1,0 +1,56 @@
+---
+description: filament v3 iimportant
+globs: 
+alwaysApply: false
+---
+新增 Resource 的條件
+- 參考以下的做法
+
+```
+protected static ?string $title = '商品規格';
+protected static ?string $navigationGroup = '商品管理';
+protected static ?string $modelLabel = '商品規格';
+rotected static ?string $pluralModelLabel = '商品規格';
+rotected static ?string $navigationIcon = 'heroicon-o-tag';
+```
+
+Create, Edit 的必要條件
+```
+protected function getRedirectUrl(): string
+{
+   return $this->getResource()::getUrl('index');
+}
+```
+
+在 Resource 的檔案裏面，針對 FileUpload image 參考以下資訊
+```
+Forms\Components\FileUpload::make('image')
+->label('主要圖片')
+->image()
+->imageEditor()
+->directory('course-main-images')
+->columnSpanFull()
+->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+->downloadable()
+->openable()
+->getUploadedFileNameForStorageUsing(
+   fn($file): string => (string) str(Str::uuid7() . '.webp')
+)
+->saveUploadedFileUsing(function ($file) {
+  $manager = new ImageManager(new Driver());
+  $image = $manager->read($file);
+  $image->cover(1024, 1024);
+  $filename = Str::uuid7()->toString() . '.webp';
+  if(!file_exists(storage_path('app/public/courses'))) {
+    mkdir(storage_path('app/public/courses'), 0755, true);
+  }
+  $image->toWebp(80)->save(storage_path('app/public/courses/' . $filename));
+  return 'courses/' . $filename;
+})
+->deleteUploadedFileUsing(function ($file) {
+  if ($file) {
+    Storage::disk('public')->delete($file);
+  }
+}),
+
+```
