@@ -12,7 +12,9 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Malzariey\FilamentLexicalEditor\Components\LexicalEditor;
+// use Malzariey\FilamentLexicalEditor\FilamentLexicalEditor;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+
 
 class ProductResource extends Resource
 {
@@ -58,7 +60,7 @@ class ProductResource extends Resource
                         $image = $manager->read($file);
                         $image->cover(1024, 1024);
                         $filename = Str::uuid7()->toString() . '.webp';
-                        if(!file_exists(storage_path('app/public/product-logos'))) {
+                        if (!file_exists(storage_path('app/public/product-logos'))) {
                             mkdir(storage_path('app/public/product-logos'), 0755, true);
                         }
                         $image->toWebp(80)->save(storage_path('app/public/product-logos/' . $filename));
@@ -67,10 +69,10 @@ class ProductResource extends Resource
                 Forms\Components\Textarea::make('description')
                     ->label('說明')
                     ->maxLength(1000),
-                LexicalEditor::make('introduction')
+                TinyEditor::make('introduction')
                     ->label('商品介紹')
                     ->columnSpanFull(),
-                LexicalEditor::make('specification')
+                TinyEditor::make('specification')
                     ->label('規格說明')
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('shipping_method')
@@ -145,4 +147,4 @@ class ProductResource extends Resource
     {
         return $this->getResource()::getUrl('index');
     }
-} 
+}

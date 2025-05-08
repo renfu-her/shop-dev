@@ -12,7 +12,8 @@
         "intervention/image": "^3.11",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
-        "malzariey/filament-lexical-editor": "^1.1"
+        "malzariey/filament-lexical-editor": "^1.1",
+        "mohamedsabil83/filament-forms-tinyeditor": "^2.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
